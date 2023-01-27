@@ -1,9 +1,23 @@
 import { Error, Loader, SongCard } from "../components";
 import {genres} from "../assets/constants";
-
+import {useGetTopChartsQuery} from '../redux/services/shazamCoreApi';
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 const Discover = () => {
-    console.log(genres);
+    // console.log(genres);
+
+    const dispatch = useDispatch()
+    const {activeSong,isPlaying} = useSelector((state)=>state.player);
+    const {data, isFetching, isError} = useGetTopChartsQuery();
+    // console.log(useGetTopChartsQuery());
+    // console.log(data);
     const genreTitle = 'POP'; 
+    if (isFetching){
+        return <Loader/>;
+    }
+    if (isError){
+        return <Error/>;
+    }
     return(
         <div className="flex flex-col">
             <div className="w-full flex justify-center items-center sm:flex-row flex-col mt-4 mb-10">
@@ -24,12 +38,15 @@ const Discover = () => {
                 </select>
             </div>
             <div className="flex flex-wrap sm:justify-start justify-center gap-8">
-            {[1,2,3,4,5,6,7,8,9,10,11].map((song,ind)=>{
+            {data?.map((song,ind)=>{
+                {/* console.log(song); */}
                 return(
                     <SongCard
                         key={song.key}
                         song={song}
                         id = {ind}
+                        isPlaying={isPlaying}
+                        activeSong={activeSong}
                     />
                 )})}
             </div>
