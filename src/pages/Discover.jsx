@@ -6,14 +6,14 @@ import { useSelector } from "react-redux";
 const Discover = () => {
     // console.log(genres);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const {activeSong,isPlaying} = useSelector((state)=>state.player);
     const {data, isFetching, isError} = useGetTopChartsQuery();
     // console.log(useGetTopChartsQuery());
     // console.log(data);
     const genreTitle = 'POP'; 
     if (isFetching){
-        return <Loader/>;
+        return <Loader title = "Loading songs..." />;
     }
     if (isError){
         return <Error/>;
@@ -47,6 +47,8 @@ const Discover = () => {
                         id = {ind}
                         isPlaying={isPlaying}
                         activeSong={activeSong}
+                        data = {data}
+
                     />
                 )})}
             </div>
