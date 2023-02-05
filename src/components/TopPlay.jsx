@@ -35,8 +35,8 @@ const TopPlay = () => {
 
   return(
     <div ref={divRef} className="xl:ml-6 xl:mb-0 xl:max-w-[500px] ml-0 mb-6 
-      flex-1 max-w-full flex flex-col">
-      <div className='w-full flex flex-col'>
+      flex-1 max-w-full flex flex-col  ">
+      <div className='w-full flex flex-col overflow-auto'>
         <div className='flex flex-row justify-between items-center'>
           <h2 className='text-white font-bold text-2xl'>Top Charts</h2>
           <Link to='/top-charts'>
@@ -70,7 +70,7 @@ const TopPlay = () => {
           slidesPerView = 'auto' spaceBetween={15}
           freeMode centeredSlides centeredSlidesBounds
           modules = {[FreeMode]} className='mt-4'>
-          {topPlays?.map((song,i) =>(
+          {topPlays?.filter(song=>song?.images?.coverart )?.map((song,i) =>(
             <SwiperSlide
             key={song?.key}
             style = {{width:'25%',height:'auto'}}

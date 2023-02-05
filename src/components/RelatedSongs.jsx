@@ -13,7 +13,7 @@ const RelatedSongs = ({data,
         </h1>
 
         <div className="mt-6 w-full flex flex-col">
-          {data?.map((song,i) => (
+          {data?.filter(song=>song?.images?.coverart )?.map((song,i) => (
             <SongBar
               key={`${song.key}-${artistId}-${i}`}
               song={song}
