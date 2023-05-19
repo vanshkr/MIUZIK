@@ -14,7 +14,7 @@ const CountryTracks = () => {
 
   useEffect(() => {
     axios
-      .get(`https://geo.ipify.org/api/v2/country?apiKey=${import.meta.env.VITE_SHAZAM_CORE_RAPID_API_KEY}`)
+      .get(`https://geo.ipify.org/api/v2/country?apiKey=at_ooQfbWSIC8QvdxxCmZ6a231CDzwGM`)
       .then((res) => setCountry(res?.data?.location.country))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));

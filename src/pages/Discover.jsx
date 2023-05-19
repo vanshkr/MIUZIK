@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import SpotifyWebApi from 'spotify-web-api-js';
 
 import { Error, Loader, SongCard } from '../components';
 import { selectGenreListId } from '../redux/features/playerSlice';
@@ -11,6 +12,14 @@ const Discover = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data, isFetching, error } = useGetSongsByGenreQuery(genreListId || 'POP');
 
+ 
+
+  const spotifyApi = new SpotifyWebApi();
+
+  spotifyApi.setAccessToken('BQD0a1XhcXP-bChK1JNXTATdIe-ag_GscF5LEQUV1kWYoAkoAXmnfJuJ0ltEcVND6zB62mAeIdZr1_EU39DKDAY_WrGQvEl6VuMh68ldngXs4eRXfSljMaOrPTZv0NW_Jom5yvvHz5tZ_LQzwt8Lf_XB8Wv4x72kp__FGrnGH9fEdS2l3G6-lPqicvv3LiBPD99ADnxS');
+  spotifyApi.getMyTopArtists({ time_range: 'medium_term', limit: 20 }).then((data) => {
+    console.log('User playlists', data.items);
+  })
   if (isFetching) return <Loader title="Loading songs..." />;
 
   if (error) return <Error />;
@@ -19,7 +28,7 @@ const Discover = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10">
+      {/* <div className="w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10">
         <h2 className="font-bold text-3xl text-white text-left">Discover {genreTitle}</h2>
 
         <select
@@ -42,7 +51,7 @@ const Discover = () => {
             i={i}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

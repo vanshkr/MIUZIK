@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
+
 const NavLinks = ({handleClick}) =>{
   return (
     <div className="mt-10 ">

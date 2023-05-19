@@ -1,11 +1,12 @@
 import SongBar from "./SongBar";
-
+import { useGetSongDetailsQuery } from "../redux/services/shazamCoreApi";
 const RelatedSongs = ({data,
   artistId,
   isPlaying,
   activeSong,
   handlePauseClick,
   handlePlayClick}) => {
+    console.log(data);
     return(
       <div className="flex flex-col">
         <h1 className="font-bold text-3xl text-white">
@@ -13,7 +14,7 @@ const RelatedSongs = ({data,
         </h1>
 
         <div className="mt-6 w-full flex flex-col">
-          {data?.filter(song=>song?.images?.coverart )?.map((song,i) => (
+          {data?.tracks?.filter(song=>song?.images?.coverart )?.map((song,i) => (
             <SongBar
               key={`${song.key}-${artistId}-${i}`}
               song={song}

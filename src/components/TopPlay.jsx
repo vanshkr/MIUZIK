@@ -21,7 +21,8 @@ const TopPlay = () => {
     divRef.current.scrollIntoView({behavior: 'smooth'});
   });
   const {data} = useGetTopChartsQuery();
-  const topPlays = data?.filter(song=>song?.images?.coverart ).slice(0,5);
+  const topPlays = data?.tracks?.filter(song=>song?.images?.coverart ).slice(0,5);
+  
   // console.log(topPlays);
   const divRef = useRef(null);
   const handlePauseClick = () =>{
@@ -73,7 +74,7 @@ const TopPlay = () => {
           {topPlays?.filter(song=>song?.images?.coverart )?.map((song,i) =>(
             <SwiperSlide
             key={song?.key}
-            style = {{width:'25%',height:'auto'}}
+            style = {{width:'100%',height:'auto'}}
             className='shadow-lg rounded-full animate-slideright'>
             <Link to= {`/artists/${song?.artists?.[0]?.adamid}`} >
               <img src = {song?.images?.background} alt = "name"

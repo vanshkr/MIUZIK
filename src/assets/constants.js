@@ -1,4 +1,5 @@
 import { HiOutlineHashtag, HiOutlineHome, HiOutlinePhotograph, HiOutlineUserGroup } from 'react-icons/hi';
+import {FiLogIn,FiLogOut} from 'react-icons/fi';
 
 export const genres = [
   { title: 'Pop', value: 'POP' },
@@ -22,4 +23,6 @@ export const links = [
   { name: 'Around You', to: '/around-you', icon: HiOutlinePhotograph },
   { name: 'Top Artists', to: '/top-artists', icon: HiOutlineUserGroup },
   { name: 'Top Charts', to: '/top-charts', icon: HiOutlineHashtag },
+  { name: 'LogIn', to: '/log-in', icon: FiLogIn},
+  { name: 'Logout', to: '/log-out', icon: FiLogOut}
 ];
